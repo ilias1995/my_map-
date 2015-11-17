@@ -6,7 +6,7 @@ class Registr_taxi(models.Model):
     second_name = models.CharField(max_length=200, verbose_name='Фамилия')
     phone_number = models.CharField(max_length='200', verbose_name='Номер телефона')
     car_model = models.CharField(max_length=200, verbose_name='Модель машины')
-    car_photo = models.FileField(upload_to='cars_photo', verbose_name='Фото машины')
+    car_photo = models.FileField(upload_to='cars_photo', verbose_name='Фото машины', default=True)
     car_number = models.CharField(max_length=200, verbose_name='Номер машины')
     price = models.IntegerField(verbose_name='Цена')
     from_where = models.CharField(max_length=200, verbose_name='Откуда')
