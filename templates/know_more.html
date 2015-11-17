@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="/">Дамой</a></li>
+					<li><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
+					<li><a href="{% url 'contacts' %}">Наше контакты</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="/">Дамой</a></li>
+			<li class="active">Информация</li>
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-14 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">{{ register_taxi.name }} {{ register_taxi.second_name }}</h1>
+				</header>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-responsive img-hover" src="{{ register_taxi.car_photo.url }}" alt="" width="600">
+                    </div>
+                    <div class="col-md-6">
+                        <h3>{{ register_taxi.from_where }} => {{ register_taxi.where }}</h3>
+                        <p>{{ register_taxi.about }}</p>
+                        <h3>Контактные данные</h3>
+                        <h4>Номер телефона: {{ register_taxi.phone_number }}</h4>
+                        <h4>Марка машины: {{ register_taxi.car_model }}</h4>
+                        <h4>Номер машины: {{ register_taxi.car_number }}</h4>
+                        <h4>Цена: {{ register_taxi.price }}</h4>
+                        <h4>Время добовление: {{ register_taxi.add_time }}</h4>
+                        <h4>До: {{ register_taxi.end_time }}</h4>
+                    </div>
+
+                </div>
+				
+			</article>
+			<!-- /Article -->
+
+
+		</div>
+	</div>	<!-- /container -->
+	
+
+{% endblock %}
