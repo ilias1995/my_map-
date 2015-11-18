@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.models import User
 from django.db import models
 
 class From_where(models.Model):
@@ -21,11 +22,22 @@ class Registr_taxi(models.Model):
     car_photo = models.FileField(blank=True,  upload_to='cars_photo', verbose_name='Фото машины')
     car_number = models.CharField(max_length=200, verbose_name='Номер машины')
     price = models.IntegerField(verbose_name='Цена')
-    from_where = models.ForeignKey(From_where)
-    where = models.ForeignKey(Where)
+    from_where = models.ForeignKey(From_where, verbose_name='От куда')
+    where = models.ForeignKey(Where, verbose_name='Куда')
     end_time = models.DateField(verbose_name='Время оканчание заказа',)
     about = models.TextField(verbose_name='Еще информация')
     add_time = models.DateField(auto_now=True)
+    user = models.ForeignKey(User)
 
     def __unicode__(self):
         return self.name
+
+class Registration(models.Model):
+    phone_number = models.CharField(max_length='200', verbose_name='Номер телефона')
+    car_model = models.CharField(max_length=200, verbose_name='Модель машины')
+    car_photo = models.FileField(blank=True,  upload_to='cars_photo', verbose_name='Фото машины')
+    car_number = models.CharField(max_length=200, verbose_name='Номер машины')
+    user = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return self.user.first_name

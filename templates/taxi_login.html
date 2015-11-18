@@ -13,13 +13,13 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li><a href="/">Дамой</a></li>
-					<li class="active"><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
+					<li><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
 					<li><a href="{% url 'contacts' %}">Наше контакты</a></li>
                     {% if user.is_authenticated %}
                      <li><a href="{% url 'user_logout' %}">Выход</a></li>
                     {% else %}
                     <li><a href="{% url 'registration_user' %}">Регистрация</a></li>
-                    <li><a href="{% url 'taxi_login' %}">Вход</a></li>
+                    <li class="active"><a href="{% url 'taxi_login' %}">Вход</a></li>
                     {% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -44,22 +44,17 @@
 					<h1 class="page-title taxi_h">Форма для регистрация Taxi</h1>
 				</header>
                 <div class="reg_taxi">
-                    {% if user.is_authenticated %}
-                        <form method="post">
-                        {% csrf_token %}
-                            {{ form.price|bootstrap }}
-                            {{ form.from_where|bootstrap }}
-                            {{ form.where|bootstrap }}
-                            {{ form.about|bootstrap }}
-                        <input type="submit" value="Регистрировать" class="btn btn-primary btn-lg active"/>
-                        </form>
-                    {% else %}
-                        <form method="post">
-                        {% csrf_token %}
-                            {{ form|bootstrap }}
-                        <input type="submit" value="Регистрировать" class="btn btn-primary btn-lg active"/>
-                        </form>
-                    {% endif %}
+        		<form id="login_form" method="post">
+                {% csrf_token %}
+                Имя пользователя:<br/> <input type="text" class="taxi_form" name="username" value="" size="50" />
+                        <br />
+                Пароль:<br/> <input type="password" class="taxi_form" name="password" value="" size="50" />
+                        <br />
+                    <input class=" taxi_button btn btn-success" type="submit" value="Вход" />
+                    <a href="{% url 'registration_user' %}" class=" taxi_button btn btn-success" role="button">Регистрация</a>
+                </form>
+
+                </div>
 			</article>
 			<!-- /Article -->
 		</div>

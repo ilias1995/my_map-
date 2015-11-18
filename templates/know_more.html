@@ -14,6 +14,12 @@
 					<li class="active"><a href="/">Дамой</a></li>
 					<li><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
 					<li><a href="{% url 'contacts' %}">Наше контакты</a></li>
+                    {% if user.is_authenticated %}
+                     <li><a href="{% url 'user_logout' %}">Выход</a></li>
+                    {% else %}
+                    <li><a href="{% url 'registration_user' %}">Регистрация</a></li>
+                    <li><a href="{% url 'taxi_login' %}">Вход</a></li>
+                    {% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -42,7 +48,7 @@
                         {% if register_taxi.car_photo %}
                             <img class="img-responsive img-hover" src="{{ register_taxi.car_photo.url }}" width="600">
                         {% else %}
-                            <img src="{% static 'images/mac.jpg' %}">
+                            <img src="http://www.fedegari.com/upld/pagine/big/no-image.jpg">
                         {% endif %}
                     </div>
                     <div class="col-md-6">

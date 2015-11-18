@@ -25,5 +25,9 @@ urlpatterns = [
     url(r'^know_more/(?P<id>\d+)/$', 'taxi.views.know_more', name='know_more'),
     url(r'^contacts/$', 'taxi.views.contacts', name='contacts'),
     url(r'registeration_taxi/$', 'taxi.views.registeration_taxi', name='registeration_taxi'),
+    url(r'registration_user/$', 'taxi.views.registration_user', name='registration_user'),
+    url(r'user_info/$', 'taxi.views.user_info', name='user_info'),
+    url(r'taxi_login/$', 'taxi.views.taxi_login', name='taxi_login'),
+    url(r'user_logout/$', 'taxi.views.user_logout', name='user_logout'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
