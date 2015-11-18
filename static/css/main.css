@@ -21,6 +21,14 @@
 	margin-left: 2%;
 }
 
+.taxi_form{
+	color:#555;
+    background-color:#fff;
+    background-image:none;
+    border:1px solid #ccc;
+    border-radius:4px;
+}
+
 .taxi_filter{
 	margin-top: 2%;
 	margin-left: 5%;
