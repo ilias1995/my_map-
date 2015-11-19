@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_taxi.html' %}
 {% load staticfiles %}
 {% block content %}
 	<!-- Fixed navbar -->
@@ -15,6 +15,7 @@
 					<li><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
 					<li><a href="{% url 'contacts' %}">Наше контакты</a></li>
                     {% if user.is_authenticated %}
+                     <li><a href="{% url 'personal_account' %}">Личный кабинет</a></li>
                      <li><a href="{% url 'user_logout' %}">Выход</a></li>
                     {% else %}
                     <li><a href="{% url 'registration_user' %}">Регистрация</a></li>

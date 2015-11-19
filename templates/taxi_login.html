@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_taxi.html' %}
 {% load staticfiles %}
 {% load bootstrap %}
 {% block content %}
@@ -51,7 +51,7 @@
                 Пароль:<br/> <input type="password" class="taxi_form" name="password" value="" size="50" />
                         <br />
                     <input class=" taxi_button btn btn-success" type="submit" value="Вход" />
-                    <a href="{% url 'registration_user' %}" class=" taxi_button btn btn-success" role="button">Регистрация</a>
+                    <a href="{% url "password_reset_recover" %}" class=" taxi_button btn btn-success" role="button">Вастоновить пароль</a>
                 </form>
 
                 </div>

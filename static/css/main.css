@@ -47,6 +47,28 @@
 	margin-left: 2%;
 }
 
+.taxi_user_image{
+	margin-top: 5%;
+}
+
+.taxi_user_info{
+	background-color: #e2e2e2;
+	height: 200px;
+	width: 100%;
+}
+
+.taxi_user_menu{
+	width: 360px;
+	margin-top: 0%;
+	background-color: #080808;
+	height: 200px;
+}
+
+.taxi_password_reset{
+	margin-top: 5%;
+	margin-left: 30%;
+}
+
 /* Autohide navbar */
 .slideUp { top:-100px; }
 .headroom { -webkit-transition: all 0.4s ease-out; -moz-transition: all 0.4s ease-out; -o-transition: all 0.4s ease-out; transition: all 0.4s ease-out; }

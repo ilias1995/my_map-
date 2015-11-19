@@ -25,45 +25,11 @@
 	<![endif]-->
 </head>
 <body>
-	<!-- Fixed navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
-		<div class="container">
-			<div class="navbar-header">
-				<!-- Button for smallest screens -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="Progressus HTML5 template"></a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav pull-right">
-					<li><a href="/">Дамой</a></li>
-					<li><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
-					<li><a href="{% url 'contacts' %}">Наше контакты</a></li>
-                    {% if user.is_authenticated %}
-                     <li><a href="{% url 'user_logout' %}">Выход</a></li>
-                    {% else %}
-                    <li><a href="{% url 'registration_user' %}">Регистрация</a></li>
-                    <li class="active"><a href="{% url 'taxi_login' %}">Вход</a></li>
-                    {% endif %}
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
-	<!-- /.navbar -->
-
-    	<header id="head">
-		<div class="container">
-			<div class="row">
-				<h1 class="lead">Добропожаловать {{ user.first_name }} на проект TAXI.</h1>
-				<h3>Этот проект удобен для всех.</h3>
-			</div>
-		</div>
-	</header>
-    <div class="taxi_password_reset">
-    {% block content %}
+{% block content %}
 
 
-    {% endblock %}
-    </div>
+{% endblock %}
+
 	<footer id="footer" class="top-space">
 
 		<div class="footer1">

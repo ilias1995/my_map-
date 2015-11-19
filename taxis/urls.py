@@ -21,13 +21,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^password_reset_recover/', include('password_reset.urls')),
     url(r'^$', 'taxi.views.index', name='index'),
     url(r'^know_more/(?P<id>\d+)/$', 'taxi.views.know_more', name='know_more'),
     url(r'^contacts/$', 'taxi.views.contacts', name='contacts'),
     url(r'registeration_taxi/$', 'taxi.views.registeration_taxi', name='registeration_taxi'),
     url(r'registration_user/$', 'taxi.views.registration_user', name='registration_user'),
-    url(r'user_info/$', 'taxi.views.user_info', name='user_info'),
     url(r'taxi_login/$', 'taxi.views.taxi_login', name='taxi_login'),
     url(r'user_logout/$', 'taxi.views.user_logout', name='user_logout'),
+    url(r'personal_account/$', 'taxi.views.personal_account', name='personal_account'),
+    url(r'personal_account/(?P<id>\d+)/$', 'taxi.views.delete', name='delete'),
+    url(r'password_change/$', 'django.contrib.auth.views.password_change', {'template_name': 'change_password.html'}, name='password_change'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

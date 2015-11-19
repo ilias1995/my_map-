@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'taxi',
     'django_filters',
     'bootstrapform',
+    'password_reset',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,6 +107,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'

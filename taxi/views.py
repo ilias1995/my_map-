@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, logout
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from taxi.models import Registr_taxi
-from taxi.forms import Taxi_form, TaxiFilter, Registration_user, User_info, Taxi_form_for_users
+from taxi.models import Registr_taxi, User
+from taxi.forms import Taxi_form, TaxiFilter, Registration_user, Taxi_form_for_users
 from django.contrib.auth import login as auth_login
 
 def index(request):
@@ -23,8 +23,7 @@ def registeration_taxi(request):
         form = Taxi_form(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.name = request.user.first_name
-            instance.second_name = request.user.last_name
+            instance.user = request.user
             instance.save()
             return redirect('/')
     else:
@@ -40,22 +39,19 @@ def registration_user(request):
             user.save()
             new_user = authenticate(username=request.POST['username'], password=request.POST['password'])
             auth_login(request, new_user)
-            return redirect('/user_info')
+            return redirect('/')
     else:
         form = Registration_user
     return render(request, 'registration_user.html', {'form': form})
 
-def user_info(request):
-    if request.method == 'POST':
-        form = User_info(request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = request.user
-            instance.save()
-            return redirect('/')
-    else:
-        form = User_info()
-    return render(request, 'user_info.html', {'form': form})
+
+def personal_account(request):
+    register_taxi_user = Registr_taxi.objects.filter(user=request.user)
+    return render(request, 'personal_account.html', {'register_taxi_user': register_taxi_user})
+
+def delete(request, id):
+    delete_user_taxi = Registr_taxi.objects.filter(user=request.user).get(pk=id).delete()
+    return redirect('/personal_account', {'delete_user_taxi': delete_user_taxi})
 
 def taxi_login(request):
     username = request.POST.get('username')

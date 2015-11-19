@@ -1,0 +1,96 @@
+{% extends 'base_taxi.html' %}
+{% load staticfiles %}
+{% load bootstrap %}
+{% block content %}
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="/">Дамой</a></li>
+					<li><a href="{% url 'registeration_taxi' %}">Регистрация TAXI</a></li>
+					<li><a href="{% url 'contacts' %}">Наше контакты</a></li>
+                    {% if user.is_authenticated %}
+                     <li class="active"><a href="{% url 'personal_account' %}">Личный кабинет</a></li>
+                     <li><a href="{% url 'user_logout' %}">Выход</a></li>
+                    {% else %}
+                    <li><a href="{% url 'registration_user' %}">Регистрация</a></li>
+                    <li><a href="{% url 'taxi_login' %}">Вход</a></li>
+                    {% endif %}
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+    <div class="container">
+        <div class="row">
+			<!-- Article main content -->
+			<article class="col-sm-17 maincontent">
+                <div class="taxi_user_info row ">
+                    <div class="col-md-4">
+                        {% if register_taxi.car_photo %}
+                            <img class="img-responsive img-hover" src="{{ register_taxi.car_photo.url }}" width="200">
+                        {% else %}
+                            <img src="http://www.ford.com/resources/ford/mustang/2015/mobile/mst15_BB_mobile_GT350_2.jpg" width="300" height="250" class="taxi_user_image">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5">
+                        <h3>Ваше данные</h3>
+                        <h4>Имя: {{ user.first_name }}</h4>
+                        <h4>Фамилия: {{ user.last_name }}</h4>
+                        <h4>Email: {{ user.email }}</h4>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="nav nav-pills nav-stacked taxi_user_menu">
+                          <li role="presentation"><a href="#">Изменить данные</a></li>
+                          <li role="presentation"><a href="#">Изменить пароль</a></li>
+                          <li role="presentation"><a href="{% url 'registeration_taxi' %}">Добавить заказ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="bs-example" data-example-id="hoverable-table">
+                            <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th>Имя</th>
+                                  <th>Фамилия</th>
+                                  <th>Номер телефона</th>
+                                  <th>Номер машины</th>
+                                  <th>Название машины</th>
+                                  <th>Удалить</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for register_taxi_user in register_taxi_user%}
+                                <tr>
+                                  <td>{{ register_taxi_user.name }}</td>
+                                  <td>{{ register_taxi_user.second_name }}</td>
+                                  <td>{{ register_taxi_user.phone_number }}</td>
+                                  <td>{{ register_taxi_user.car_number }}</td>
+                                  <td>{{ register_taxi_user.car_model }}</td>
+                                  <td><a href='/personal_account/{{ register_taxi_user.id }}'>X</a></td>
+                                </tr>
+                              {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                    </div>
+                </div>
+			</article>
+			<!-- /Article -->
+		</div>
+
+	</div>	<!-- /container -->
+
+
+
+{% endblock %}
